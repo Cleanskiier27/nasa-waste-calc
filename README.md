@@ -17,3 +17,15 @@ Adaptive training pipelines that learn from system usage and operational changes
 This release reflects the highest level of performance and precision achievable within the constraints of the challenge. It is intended to support ongoing research, mission planning, and sustainability‑focused engineering efforts.
 
 Further documentation, source materials, and implementation notes are available in the project repository.
+
+## Release Information
+
+**Current Release:** [luna.eu](https://github.com/NetworkBuster/networkbuster.net/releases/tag/luna.eu) (Data Central)
+
+This release is linked to the Data Central branch from [NetworkBuster/networkbuster.net](https://github.com/NetworkBuster/networkbuster.net).
+
+For complete release details and download links, see [RELEASE.md](./RELEASE.md).
+
+## Related Projects
+
+- [NetworkBuster/networkbuster.net](https://github.com/NetworkBuster/networkbuster.net) - Main NetworkBuster repository
