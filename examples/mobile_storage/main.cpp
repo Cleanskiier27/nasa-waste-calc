@@ -1,5 +1,5 @@
 #include <core/StorageManager.h>
-#include "../runtime/GameLoader.h"
+#include <GameLoader.h>
 #include <iostream>
 #include <vector>
 
@@ -102,7 +102,8 @@ int main() {
 
     // Example: Load game with SSD-optimized storage
     auto runtime = GameLoader::Create();
-    auto game = runtime->LoadGame("mobile_game.apk", GameLoader::Platform::Android);
+    // Note: filename is a placeholder - actual format would depend on implementation
+    auto game = runtime->LoadGame("mobile_game.nre", GameLoader::Platform::Android);
     
     GameLoader::EnhancementOptions options;
     options.textures = GameLoader::TextureQuality::Enhanced2K;  // Lower for mobile
