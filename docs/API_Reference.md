@@ -80,6 +80,60 @@ float deltaTime = Time::GetDeltaTime();
 float fps = Time::GetFPS();
 ```
 
+### StorageManager
+
+SSD/flash storage management with mobile optimization.
+
+```cpp
+#include <NatureRealityEngine/Core/StorageManager.h>
+
+// Configure storage for mobile device
+StorageManager::Config config;
+config.platform = StorageManager::Platform::Android;  // iOS, Android, Desktop, Web
+config.maxCacheSizeMB = 256;  // Cache size limit
+config.enableCompression = true;
+config.enableWearLeveling = true;  // Protect SSD/flash
+config.storagePath = "/sdcard/MyGame/storage";
+
+auto storage = StorageManager::Create(config);
+storage->Initialize();
+
+// Write data
+struct SaveGame { int level; int score; };
+SaveGame save = {5, 12345};
+storage->Write("save_slot_1", &save, sizeof(SaveGame), 
+               StorageManager::Priority::Critical);
+
+// Read data
+SaveGame loaded;
+storage->Read("save_slot_1", &loaded, sizeof(SaveGame));
+
+// Check storage usage
+size_t cacheUsed = storage->GetCacheUsage();
+size_t totalUsed = storage->GetStorageUsage();
+
+// Optimize storage
+storage->Optimize();
+storage->Flush();
+```
+
+**Methods:**
+- `Create(config)` - Create storage manager
+- `Initialize()` - Initialize storage system
+- `Write(key, data, size, priority)` - Write data to storage
+- `Read(key, data, size)` - Read data from storage
+- `Exists(key)` - Check if data exists
+- `Delete(key)` - Delete data
+- `GetSize(key)` - Get data size
+- `ClearCache()` - Clear cached data
+- `GetCacheUsage()` - Get cache usage
+- `GetStorageUsage()` - Get total storage usage
+- `Optimize()` - Optimize storage (defragment, GC)
+- `Flush()` - Flush pending writes
+- `ListKeys()` - List all stored keys
+- `SetLowStorageCallback(callback)` - Set low storage warning
+- `Shutdown()` - Shutdown storage
+
 ## Renderer
 
 ### Main Renderer

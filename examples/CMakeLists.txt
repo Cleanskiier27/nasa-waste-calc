@@ -10,11 +10,17 @@ add_executable(minecraft_enhanced minecraft_enhanced/main.cpp)
 target_link_libraries(minecraft_enhanced PRIVATE NatureRealityEngine)
 target_compile_features(minecraft_enhanced PRIVATE cxx_std_20)
 
+# Mobile storage example
+add_executable(mobile_storage_example mobile_storage/main.cpp)
+target_link_libraries(mobile_storage_example PRIVATE NatureRealityEngine)
+target_compile_features(mobile_storage_example PRIVATE cxx_std_20)
+
 # Install examples
-install(TARGETS survival_game minecraft_enhanced
+install(TARGETS survival_game minecraft_enhanced mobile_storage_example
     RUNTIME DESTINATION bin/examples
 )
 
 message(STATUS "Example games configured:")
 message(STATUS "  - survival_game")
 message(STATUS "  - minecraft_enhanced")
+message(STATUS "  - mobile_storage_example")

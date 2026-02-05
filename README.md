@@ -42,12 +42,13 @@ Create a game engine where graphics are **indistinguishable from real nature**, 
 - **Terrain Editor**: Sculpting, painting, erosion simulation
 - **Material Editor**: Node-based PBR shader creation
 - **Animation Tools**: Skeletal animation, IK, motion capture
+- **Storage Manager**: SSD/flash optimization for mobile devices with compression and wear leveling
 
 ### 🌐 Cross-Platform
 - Windows (DirectX 12, Vulkan)
 - macOS (Metal, Vulkan via MoltenVK)
 - Linux (Vulkan)
-- iOS & Android (Mobile optimized)
+- iOS & Android (Mobile optimized with SSD storage)
 - Web (WebGPU)
 - VR (All major headsets)
 - Raspberry Pi (Optimized Vulkan)
@@ -146,6 +147,37 @@ photoSim.GivePlayerCamera("canon_eos_r5");
 photoSim.SetObjective("Photograph bear catching salmon");
 photoSim.Start();
 ```
+
+### 4. Mobile Game with SSD Storage Optimization
+```cpp
+// Optimize game for mobile phones (iOS/Android)
+#include <NatureRealityEngine/Core/StorageManager.h>
+#include <NatureRealityEngine/Runtime/GameLoader.h>
+
+// Configure SSD storage for mobile
+StorageManager::Config storageConfig;
+storageConfig.platform = StorageManager::Platform::Android;
+storageConfig.maxCacheSizeMB = 256;
+storageConfig.enableCompression = true;
+storageConfig.enableWearLeveling = true;
+
+auto storage = StorageManager::Create(storageConfig);
+storage->Initialize();
+
+// Load game with mobile optimizations
+auto runtime = GameLoader::Create();
+auto game = runtime->LoadGame("mobile_game.apk", GameLoader::Platform::Android);
+
+GameLoader::EnhancementOptions options;
+options.textures = GameLoader::TextureQuality::Enhanced2K;
+options.enableSSDOptimization = true;
+options.cacheSizeMB = 256;
+options.compressAssets = true;
+
+game->ApplyEnhancements(options);
+game->Run();
+```
+
 
 ## 🏗️ Project Structure
 
