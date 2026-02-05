@@ -4,6 +4,8 @@ bin/
 lib/
 install/
 out/
+_codeql_build_dir/
+_codeql_detected_source_root
 
 # CMake
 CMakeCache.txt
