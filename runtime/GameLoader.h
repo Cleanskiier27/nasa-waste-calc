@@ -102,6 +102,11 @@ public:
         bool dynamicWeather = true;
         bool realisticPhysics = true;
         bool spatialAudio = true;
+        
+        // Mobile/Phone storage optimization
+        bool enableSSDOptimization = true;   // Enable SSD/flash storage optimizations
+        size_t cacheSizeMB = 256;            // Cache size for mobile devices
+        bool compressAssets = true;          // Compress stored assets to save space
     };
 
     /**

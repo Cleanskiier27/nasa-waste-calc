@@ -58,6 +58,7 @@ include_directories(
 add_library(NatureRealityEngine INTERFACE)
 target_include_directories(NatureRealityEngine INTERFACE
     ${CMAKE_SOURCE_DIR}/engine
+    ${CMAKE_SOURCE_DIR}/runtime
 )
 
 # Subdirectories
