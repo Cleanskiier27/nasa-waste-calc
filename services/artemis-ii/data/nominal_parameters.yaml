@@ -1,0 +1,88 @@
+# Nominal operational parameters for Artemis II systems
+# Used for anomaly detection and alert thresholds
+
+spacecraft:
+  altitude:
+    min: 185  # km (LEO parking orbit)
+    max: 384400  # km (Earth-Moon distance)
+  
+crew:
+  vitals:
+    heart_rate:
+      min: 60
+      max: 100
+      critical_low: 50
+      critical_high: 120
+    oxygen_saturation:
+      min: 95
+      max: 100
+      critical_low: 90
+    temperature:
+      min: 36.5  # Celsius
+      max: 37.5
+      critical_low: 35.0
+      critical_high: 39.0
+    blood_pressure_systolic:
+      min: 100
+      max: 140
+      critical_low: 90
+      critical_high: 160
+    blood_pressure_diastolic:
+      min: 60
+      max: 90
+      critical_low: 50
+      critical_high: 100
+
+eclss:
+  oxygen:
+    partial_pressure:
+      nominal: 160  # mmHg
+      min: 158
+      max: 162
+      critical_low: 150
+      critical_high: 170
+    tank_pressure:
+      nominal: 875  # PSI
+      min: 850
+      max: 900
+  co2:
+    level:
+      nominal: 3.0  # mmHg
+      max: 4.0
+      critical_high: 5.0
+  cabin:
+    pressure:
+      nominal: 14.7  # PSI
+      min: 14.5
+      max: 14.9
+      critical_low: 14.0
+      critical_high: 15.5
+    temperature:
+      min: 18  # Celsius
+      max: 27
+      nominal: 22
+    humidity:
+      min: 30  # percent
+      max: 70
+      nominal: 50
+
+power:
+  solar_arrays:
+    output_min: 9.0  # kW
+    output_nominal: 11.0
+  battery:
+    state_of_charge_min: 80  # percent
+    state_of_charge_nominal: 90
+    voltage_min: 28  # Volts
+    voltage_nominal: 31
+  power_margin_min: 10  # percent
+
+propulsion:
+  fuel:
+    hydrazine_min: 150  # kg
+    mon_oxidizer_min: 140  # kg
+  delta_v_reserve: 500  # m/s
+
+communications:
+  signal_strength_min: -120  # dBm
+  data_rate_min: 1.0  # Mbps

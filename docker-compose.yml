@@ -1,0 +1,78 @@
+version: '3.8'
+
+services:
+  artemis-backend:
+    build: ./services/artemis-ii
+    ports:
+      - "8081:8081"
+    environment:
+      - DATABASE_URL=postgresql://postgres:artemis@timescaledb:5432/artemis
+      - REDIS_URL=redis://redis:6379/0
+      - PORT=8081
+    depends_on:
+      - timescaledb
+      - redis
+    networks:
+      - artemis-network
+    restart: unless-stopped
+
+  artemis-frontend:
+    build: ./services/artemis-ii-ui
+    ports:
+      - "3001:80"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8081
+    depends_on:
+      - artemis-backend
+    networks:
+      - artemis-network
+    restart: unless-stopped
+
+  timescaledb:
+    image: timescale/timescaledb:latest-pg15
+    environment:
+      - POSTGRES_DB=artemis
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=artemis
+    volumes:
+      - timescale-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - artemis-network
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    volumes:
+      - redis-data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - artemis-network
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3002:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=artemis
+      - GF_SECURITY_ADMIN_USER=admin
+    volumes:
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - timescaledb
+    networks:
+      - artemis-network
+    restart: unless-stopped
+
+networks:
+  artemis-network:
+    driver: bridge
+
+volumes:
+  timescale-data:
+  redis-data:
+  grafana-data:
