@@ -24,3 +24,17 @@ message(STATUS "Example games configured:")
 message(STATUS "  - survival_game")
 message(STATUS "  - minecraft_enhanced")
 message(STATUS "  - mobile_storage_example")
+
+# ── Vulkan translation demo ────────────────────────────────────────────────────
+if(USE_VULKAN)
+    find_package(Vulkan QUIET)
+    if(Vulkan_FOUND)
+        add_subdirectory(vulkan_translation_demo)
+        message(STATUS "  - vulkan_translation_demo (Vulkan SDK found)")
+    else()
+        # Build the demo in stub mode so the translation table is still usable
+        add_subdirectory(vulkan_translation_demo)
+        message(WARNING "  - vulkan_translation_demo: Vulkan SDK not found — "
+                        "building in stub mode (translation table only)")
+    endif()
+endif()
