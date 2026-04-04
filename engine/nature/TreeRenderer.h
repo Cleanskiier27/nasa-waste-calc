@@ -51,7 +51,7 @@ public:
      * @param config Tree configuration
      * @return Unique pointer to tree renderer
      */
-    static std::unique_ptr<TreeRenderer> Create(const TreeConfig& config = TreeConfig{});
+    static std::unique_ptr<TreeRenderer> Create(const TreeConfig& config);
 
     /**
      * @brief Generate tree using L-system
