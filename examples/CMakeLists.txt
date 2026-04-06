@@ -25,6 +25,10 @@ message(STATUS "  - survival_game")
 message(STATUS "  - minecraft_enhanced")
 message(STATUS "  - mobile_storage_example")
 
+# Artemis Mission Demo
+add_subdirectory(artemis_mission_demo)
+message(STATUS "  - artemis_mission_demo")
+
 # ── Vulkan translation demo ────────────────────────────────────────────────────
 if(USE_VULKAN)
     find_package(Vulkan QUIET)
